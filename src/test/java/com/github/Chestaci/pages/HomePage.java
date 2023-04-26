@@ -12,7 +12,7 @@ public class HomePage extends Page {
     /**
      * Определение локатора приветствия
      */
-    @FindBy(xpath = "/html/body/div[3]/div/div/div/p[1]")
+    @FindBy(xpath = "//*[contains(text(), 'logged in')]")
     public WebElement text;
 
     /**

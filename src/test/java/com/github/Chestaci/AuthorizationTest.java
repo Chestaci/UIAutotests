@@ -14,10 +14,8 @@ import org.testng.annotations.Test;
  * Тесты авторизации
  */
 public class AuthorizationTest {
-
     private LoginPage loginPage;
-    private WebDriver driver = null;
-
+    private WebDriver driver;
 
     /**
      * Инициализация перед началом теста
@@ -46,9 +44,6 @@ public class AuthorizationTest {
                 ConfProperties.getProperty("username"),
                 ConfProperties.getProperty("password"),
                 ConfProperties.getProperty("username"));
-
         Assertions.assertThat(homePage.text.getText()).isEqualTo("You're logged in!!");
     }
-
-
 }

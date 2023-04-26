@@ -15,10 +15,8 @@ import org.testng.annotations.Test;
  * Тесты главной страницы
  */
 public class MainPageTest {
-
     private MainPage mainPage;
-    private WebDriver driver = null;
-
+    private WebDriver driver;
 
     /**
      * Инициализация перед началом теста
@@ -43,7 +41,6 @@ public class MainPageTest {
      */
     @Test
     public void elementPresenceTest() {
-
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(mainPage.isHeaderPresent())
                     .withFailMessage("Заголовок не присутствует на странице").isTrue();
@@ -57,22 +54,33 @@ public class MainPageTest {
     /**
      * Тест слайдера
      */
-    @Test
+    @Test(priority = -1)
     public void sliderTest() {
         mainPage.clickRightSliderButton();
         Assertions.assertThat(mainPage.isSlideFourPresent())
                 .withFailMessage("Слайдер не работает").isTrue();
-
     }
 
     /**
-     * Тест отображения основного меню в шапке при скроллинге
+     * Тест отображения основного меню в шапке при скроллинге на 1000 пикселей вниз
      */
     @Test
     public void scrollTest() {
         Assertions.assertThat(mainPage.isMenuPresent())
                 .withFailMessage("Меню изначально не присутствует на странице").isTrue();
-        mainPage.scroll();
+        mainPage.scroll(1000);
+        Assertions.assertThat(mainPage.isMenuPresent())
+                .withFailMessage("Меню при прокрутке не присутствует на странице").isTrue();
+    }
+
+    /**
+     * Тест отображения основного меню в шапке при скроллинге до футера
+     */
+    @Test
+    public void scrollToElementTest() {
+        Assertions.assertThat(mainPage.isMenuPresent())
+                .withFailMessage("Меню изначально не присутствует на странице").isTrue();
+        mainPage.scrollToElement(mainPage.footer);
         Assertions.assertThat(mainPage.isMenuPresent())
                 .withFailMessage("Меню при прокрутке не присутствует на странице").isTrue();
     }

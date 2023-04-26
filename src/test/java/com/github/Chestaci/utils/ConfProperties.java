@@ -9,7 +9,6 @@ import java.util.Properties;
  * Утилитный класс для работы с файлом настройки
  */
 public class ConfProperties {
-
     protected static FileInputStream fileInputStream;
     protected static Properties PROPERTIES;
 

@@ -12,13 +12,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 
 public class MainPage extends Page {
+    /**
+     * Определение локатора элемента меню Resources
+     */
+    @FindBy(css = "#menu-item-27617")
+    public WebElement menuResources;
 
     /**
      * Определение локатора заголовка страницы
      */
     @FindBy(xpath = "//*[@id=\"ast-desktop-header\"]/div[1]")
     private WebElement header;
-
 
     /**
      * Определение локатора элементов меню
@@ -30,15 +34,7 @@ public class MainPage extends Page {
      * Определение локатора футера страницы
      */
     @FindBy(css = "[class*=elementor-25361]")
-    private WebElement footer;
-
-
-    /**
-     * Определение локатора элемента меню Resources
-     */
-    @FindBy(css = "#menu-item-27617")
-    public WebElement menuResources;
-
+    public WebElement footer;
 
     /**
      * Определение локатора слайда №4
@@ -46,20 +42,17 @@ public class MainPage extends Page {
     @FindBy(css = "#NzM0OjEzNA\\=\\=-1")
     private WebElement slideFour;
 
-
     /**
      * Определение локатора правой кнопки слайдера
      */
     @FindBy(css = "[class*=fa-angle-right]")
-    private WebElement rightSliderButton;
-
+    public WebElement rightSliderButton;
 
     /**
      * Определение локатора кнопки перехода на страницу Practice Site 1
      */
     @FindBy(css = "#menu-item-27618>a")
     private WebElement practiceSiteOneButton;
-
 
     /**
      * Конструктор класса, занимающийся инициализацией полей класса
@@ -94,12 +87,11 @@ public class MainPage extends Page {
         return menuList.isDisplayed();
     }
 
-
     /**
      * Метод для осуществления нажатия на правую кнопку слайдера
      */
     public void clickRightSliderButton() {
-        wait.until(ExpectedConditions.visibilityOf(rightSliderButton));
+        wait.until(ExpectedConditions.elementToBeClickable(rightSliderButton));
         rightSliderButton.click();
     }
 
@@ -121,12 +113,22 @@ public class MainPage extends Page {
     }
 
     /**
-     * Метод для осуществления прокрутки на 1000 пикселей вниз
+     * Метод для осуществления прокрутки вниз на заданное количество пикселей
+     * @param pixel Количество пикселей
      */
-    public void scroll() {
+    public void scroll(int pixel) {
         wait.until(ExpectedConditions.visibilityOf(menuList));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,1000)");
+        js.executeScript("window.scrollBy(0," + pixel + ")");
     }
 
+    /**
+     * Метод для осуществления прокрутки вниз до нужного элемента на странице
+     * @param element Элемент на странице
+     */
+    public void scrollToElement(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(menuList));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
 }

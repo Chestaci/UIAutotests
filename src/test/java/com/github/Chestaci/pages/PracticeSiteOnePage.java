@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
  * Объект страницы Practice Site 1
  */
 public class PracticeSiteOnePage extends Page {
-
-
     /**
      * Определение локатора формы регистрации при переходе на Practice Site 1
      */

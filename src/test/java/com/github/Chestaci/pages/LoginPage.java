@@ -15,6 +15,7 @@ public class LoginPage extends Page {
      */
     @FindBy(css = "input[id=username]")
     private WebElement usernameField;
+
     /**
      * Определение локатора поля ввода Password
      */
@@ -95,5 +96,4 @@ public class LoginPage extends Page {
         clickLoginButton();
         return new HomePage(this.driver);
     }
-
 }
