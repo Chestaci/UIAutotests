@@ -1,6 +1,7 @@
 package com.github.Chestaci.pages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,12 @@ public class LoginPage extends Page {
      */
     @FindBy(css = "[ng-click*=login]")
     private WebElement loginButton;
+
+    /**
+     * Определение локатора текста об ошибке авторизации
+     */
+    @FindBy (css = "[class*=alert-danger]")
+    private WebElement error;
 
     /**
      * Конструктор класса, занимающийся инициализацией полей класса
@@ -76,10 +83,18 @@ public class LoginPage extends Page {
 
     /**
      * Метод для осуществления нажатия на кнопку авторизации
+     *
+     * @return true, если кнопка активна, иначе - false
      */
-    private void clickLoginButton() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(loginButton));
-        loginButton.click();
+    @Step("Нажатие на кнопку авторизации")
+    public boolean clickLoginButton() {
+        wait.until(ExpectedConditions.visibilityOf(loginButton));
+        if(loginButton.isEnabled()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginButton);
+            wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+            loginButton.click();
+            return true;
+        }return false;
     }
 
     /**
@@ -87,17 +102,35 @@ public class LoginPage extends Page {
      *
      * @param username            Имя
      * @param password            Пароль
-     * @param usernameDescription Username description,
-     *                            а также нажатия кнопки авторизации
+     * @param usernameDescription Username description
      */
     @Step("Заполнение полей ввода username: " +
-            "{username}," + " password: {password}, usernameDescription: {usernameDescription} " +
-            "и нажатие на кнопку добавления клиента")
+            "{username}," + " password: {password}, usernameDescription: {usernameDescription} ")
     public HomePage fillFieldsAndClick(String username, String password, String usernameDescription) {
         inputUsername(username);
         inputPassword(password);
         inputUsernameDescription(usernameDescription);
-        clickLoginButton();
         return new HomePage(this.driver);
+    }
+
+    /**
+     * Метод для очистки полей ввода
+     */
+    @Step("Очистка полей ввода")
+    public void clearFields(){
+        usernameField.clear();
+        passwordField.clear();
+        usernameDescriptionField.clear();
+    }
+
+    /**
+     * Метод получения сообщения об ошибке
+     *
+     * @return сообещние об ошибке
+     */
+    @Step("Получение сообщения об ошибке")
+    public String getErrorMessage(){
+        wait.until(ExpectedConditions.visibilityOf(error));
+        return error.getText();
     }
 }

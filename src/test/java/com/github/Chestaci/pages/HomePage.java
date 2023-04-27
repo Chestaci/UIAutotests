@@ -1,8 +1,10 @@
 package com.github.Chestaci.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Объект домашней страницы пользователя
@@ -12,8 +14,8 @@ public class HomePage extends Page {
     /**
      * Определение локатора приветствия
      */
-    @FindBy(xpath = "//*[contains(text(), 'logged in')]")
-    public WebElement text;
+    @FindBy(xpath = "//div[@class='container']//p[1]")
+    private WebElement text;
 
     /**
      * Конструктор класса, занимающийся инициализацией полей класса
@@ -22,5 +24,16 @@ public class HomePage extends Page {
      */
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    /**
+     * Метод получения приветственного сообщения
+     *
+     * @return приветственное сообщение
+     */
+    @Step("Получение приветственного сообщения")
+    public String getWelcomeMessage() {
+        wait.until(ExpectedConditions.visibilityOf(text));
+        return text.getText();
     }
 }

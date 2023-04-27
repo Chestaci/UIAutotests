@@ -103,7 +103,8 @@ public class MainPage extends Page {
      */
     @Step("Нажатие на меню Resources")
     public void clickMenuResources() {
-        wait.until(ExpectedConditions.visibilityOf(menuResources));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", menuResources);
+        wait.until(ExpectedConditions.elementToBeClickable(menuResources));
         menuResources.click();
     }
 
@@ -112,6 +113,7 @@ public class MainPage extends Page {
      */
     @Step("Нажатие на правую кнопку слайдера")
     public void clickRightSliderButton() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", rightSliderButton);
         wait.until(ExpectedConditions.elementToBeClickable(rightSliderButton));
         rightSliderButton.click();
     }
