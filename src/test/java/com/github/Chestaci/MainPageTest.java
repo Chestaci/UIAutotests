@@ -63,7 +63,7 @@ public class MainPageTest {
     /**
      * Тест работы слайдера
      */
-    @Test(priority = -1)
+    @Test(priority = -2)
     @Severity(value = SeverityLevel.MINOR)
     @Feature("Тест слайдера")
     @Story("Тест работы слайдера при нажатии на правую кнопку")
@@ -106,7 +106,7 @@ public class MainPageTest {
     /**
      * Тест перехода по меню Resources -> Practice Site 1
      */
-    @Test
+    @Test(priority = -1)
     @Severity(value = SeverityLevel.NORMAL)
     @Feature("Тест перехода по меню")
     @Story("Тест перехода по меню Resources -> Practice Site 1")

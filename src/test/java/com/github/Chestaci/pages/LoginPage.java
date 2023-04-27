@@ -106,10 +106,27 @@ public class LoginPage extends Page {
      */
     @Step("Заполнение полей ввода username: " +
             "{username}," + " password: {password}, usernameDescription: {usernameDescription} ")
-    public HomePage fillFieldsAndClick(String username, String password, String usernameDescription) {
+    public void fillFields(String username, String password, String usernameDescription) {
         inputUsername(username);
         inputPassword(password);
         inputUsernameDescription(usernameDescription);
+    }
+
+    /**
+     * Метод для осуществления действий по заполнению полей формы параметрами
+     *
+     * @param username            Имя
+     * @param password            Пароль
+     * @param usernameDescription Username description
+     * @return страницу пользователя
+     * @see HomePage
+     */
+    @Step("Заполнение полей ввода username: " +
+            "{username}," + " password: {password}, usernameDescription: {usernameDescription} " +
+            "и нажатие кнопки авторизации")
+    public HomePage fillFieldsAndClick(String username, String password, String usernameDescription) {
+        fillFields(username, password, usernameDescription);
+        clickLoginButton();
         return new HomePage(this.driver);
     }
 

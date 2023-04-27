@@ -103,7 +103,7 @@ public class MainPage extends Page {
      */
     @Step("Нажатие на меню Resources")
     public void clickMenuResources() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", menuResources);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", menuResources);
         wait.until(ExpectedConditions.elementToBeClickable(menuResources));
         menuResources.click();
     }
@@ -113,7 +113,7 @@ public class MainPage extends Page {
      */
     @Step("Нажатие на правую кнопку слайдера")
     public void clickRightSliderButton() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", rightSliderButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", rightSliderButton);
         wait.until(ExpectedConditions.elementToBeClickable(rightSliderButton));
         rightSliderButton.click();
     }
@@ -137,8 +137,7 @@ public class MainPage extends Page {
     @Step("Прокрутка вниз на {pixel} пикселей")
     public void scroll(int pixel) {
         wait.until(ExpectedConditions.visibilityOf(menuList));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0," + pixel + ")");
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0," + pixel + ")");
     }
 
     /**
@@ -148,7 +147,6 @@ public class MainPage extends Page {
     @Step("Прокрутка вниз до элемента")
     public void scrollToElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(menuList));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", element);
+         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 }

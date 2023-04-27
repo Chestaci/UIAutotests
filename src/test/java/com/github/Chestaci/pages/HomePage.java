@@ -14,7 +14,7 @@ public class HomePage extends Page {
     /**
      * Определение локатора приветствия
      */
-    @FindBy(xpath = "//div[@class='container']//p[1]")
+    @FindBy(xpath = "//*[contains(text(), 'logged in')]")
     private WebElement text;
 
     /**

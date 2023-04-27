@@ -94,15 +94,13 @@ public class AuthorizationTest {
     @Severity(value = SeverityLevel.NORMAL)
     @Feature("Тест авторизации пользователя")
     @Story("Тест успешной авторизации пользователя")
-    public void successfulAuthorizationTest(String username, String password, String usernameDescription) throws InterruptedException {
+    public void successfulAuthorizationTest(String username, String password, String usernameDescription) {
         HomePage homePage = loginPage.fillFieldsAndClick(
                 username,
                 password,
                 usernameDescription);
-        Thread.sleep(10000);
-        loginPage.clickLoginButton();
-        Thread.sleep(10000);
         Assertions.assertThat(homePage.getWelcomeMessage()).isEqualTo("You're logged in!!");
+        driver.navigate().back();
     }
 
     /**
@@ -116,12 +114,11 @@ public class AuthorizationTest {
     @Severity(value = SeverityLevel.NORMAL)
     @Feature("Тест авторизации пользователя")
     @Story("Тест неуспешной авторизации пользователя с неправильными данными")
-    public void notSuccessfulAuthorizationTest(String username, String password, String usernameDescription) {
+    public void unSuccessfulAuthorizationTest(String username, String password, String usernameDescription) {
         loginPage.fillFieldsAndClick(
                 username,
                 password,
                 usernameDescription);
-        loginPage.clickLoginButton();
         Assertions.assertThat(loginPage.getErrorMessage()).isEqualTo("Username or password is incorrect");
         loginPage.clearFields();
     }
@@ -138,7 +135,7 @@ public class AuthorizationTest {
     @Feature("Тест авторизации пользователя")
     @Story("Тест неправильного заполнения полей ввода")
     public void incorrectInputFieldsTest(String username, String password, String usernameDescription) {
-        loginPage.fillFieldsAndClick(
+        loginPage.fillFields(
                 username,
                 password,
                 usernameDescription);
