@@ -4,6 +4,11 @@ import com.github.Chestaci.pages.MainPage;
 import com.github.Chestaci.pages.PracticeSiteOnePage;
 import com.github.Chestaci.utils.ConfProperties;
 import com.github.Chestaci.utils.WebDriverUtils;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +19,7 @@ import org.testng.annotations.Test;
 /**
  * Тесты главной страницы
  */
+@Epic("Тесты главной страницы")
 public class MainPageTest {
     private MainPage mainPage;
     private WebDriver driver;
@@ -40,6 +46,9 @@ public class MainPageTest {
      * Тест наличия элементов на странице: заголовок, футер, меню
      */
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Feature("Тест наличия элементов на странице")
+    @Story("Тест наличия элементов на странице: заголовок, футер, меню")
     public void elementPresenceTest() {
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(mainPage.isHeaderPresent())
@@ -52,9 +61,12 @@ public class MainPageTest {
     }
 
     /**
-     * Тест слайдера
+     * Тест работы слайдера
      */
     @Test(priority = -1)
+    @Severity(value = SeverityLevel.MINOR)
+    @Feature("Тест слайдера")
+    @Story("Тест работы слайдера при нажатии на правую кнопку")
     public void sliderTest() {
         mainPage.clickRightSliderButton();
         Assertions.assertThat(mainPage.isSlideFourPresent())
@@ -65,6 +77,9 @@ public class MainPageTest {
      * Тест отображения основного меню в шапке при скроллинге на 1000 пикселей вниз
      */
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Feature("Тест отображения основного меню в шапке при скроллинге")
+    @Story("Тест отображения основного меню в шапке при скроллинге на заданное количество пикселей вниз")
     public void scrollTest() {
         Assertions.assertThat(mainPage.isMenuPresent())
                 .withFailMessage("Меню изначально не присутствует на странице").isTrue();
@@ -77,6 +92,9 @@ public class MainPageTest {
      * Тест отображения основного меню в шапке при скроллинге до футера
      */
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Feature("Тест отображения основного меню в шапке при скроллинге")
+    @Story("Тест отображения основного меню в шапке при скроллинге до заданного элемента")
     public void scrollToElementTest() {
         Assertions.assertThat(mainPage.isMenuPresent())
                 .withFailMessage("Меню изначально не присутствует на странице").isTrue();
@@ -89,8 +107,11 @@ public class MainPageTest {
      * Тест перехода по меню Resources -> Practice Site 1
      */
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
+    @Feature("Тест перехода по меню")
+    @Story("Тест перехода по меню Resources -> Practice Site 1")
     public void menuTransitionTest() {
-        mainPage.menuResources.click();
+        mainPage.clickMenuResources();
         PracticeSiteOnePage practiceSiteOnePage = mainPage.clickPracticeSiteOneButton();
         Assertions.assertThat(practiceSiteOnePage.form.getText()).isEqualTo("DUMMY REGISTRATION FORM");
         driver.navigate().back();

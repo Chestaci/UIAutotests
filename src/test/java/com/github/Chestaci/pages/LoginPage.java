@@ -1,5 +1,6 @@
 package com.github.Chestaci.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,6 +90,9 @@ public class LoginPage extends Page {
      * @param usernameDescription Username description,
      *                            а также нажатия кнопки авторизации
      */
+    @Step("Заполнение полей ввода username: " +
+            "{username}," + " password: {password}, usernameDescription: {usernameDescription} " +
+            "и нажатие на кнопку добавления клиента")
     public HomePage fillFieldsAndClick(String username, String password, String usernameDescription) {
         inputUsername(username);
         inputPassword(password);
