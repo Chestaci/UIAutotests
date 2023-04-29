@@ -12,7 +12,9 @@ import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,15 +22,20 @@ import org.testng.annotations.Test;
  * Тесты главной страницы
  */
 @Epic("Тесты главной страницы")
-public class MainPageTest {
-    private MainPage mainPage;
+public class MainPageTest{
     private WebDriver driver;
+    private MainPage mainPage;
+
+    @BeforeMethod
+    public void setUpMethod(final ITestContext context) {
+        context.setAttribute("driver", driver);
+    }
 
     /**
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUp() {
+    void setUpTest() {
         driver = WebDriverUtils.getPreparedDriver();
         mainPage = new MainPage(driver);
         driver.get(ConfProperties.getProperty("main_page"));
@@ -115,5 +122,14 @@ public class MainPageTest {
         PracticeSiteOnePage practiceSiteOnePage = mainPage.clickPracticeSiteOneButton();
         Assertions.assertThat(practiceSiteOnePage.form.getText()).isEqualTo("DUMMY REGISTRATION FORM");
         driver.navigate().back();
+    }
+
+    /**
+     * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
+     */
+    @Test
+    public void failTestMainPage(){
+        mainPage.clickMenuResources();
+        Assertions.fail("Fail main page test");
     }
 }
