@@ -11,7 +11,9 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,16 +21,22 @@ import org.testng.annotations.Test;
 /**
  * Тесты авторизации
  */
+//@Listeners({TestListener.class})
 @Epic("Тесты авторизации")
-public class AuthorizationTest {
-    private LoginPage loginPage;
+public class AuthorizationTest{
     private WebDriver driver;
+    private LoginPage loginPage;
+
+    @BeforeMethod
+    public void setUpMethod(final ITestContext context) {
+        context.setAttribute("driver", driver);
+    }
 
     /**
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUp() {
+    void setUpTest() {
         driver = WebDriverUtils.getPreparedDriver();
         loginPage = new LoginPage(driver);
         driver.get(ConfProperties.getProperty("login_page"));
@@ -141,5 +149,14 @@ public class AuthorizationTest {
                 usernameDescription);
         Assertions.assertThat(loginPage.clickLoginButton()).isFalse();
         loginPage.clearFields();
+    }
+
+    /**
+     * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
+     */
+    @Test
+    public void failTestAuthorizationTest(){
+        loginPage.clearFields();
+        Assertions.fail("Fail authorization test");
     }
 }

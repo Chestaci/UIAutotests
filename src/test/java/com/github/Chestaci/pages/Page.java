@@ -16,6 +16,6 @@ public class Page {
     public Page(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(this.driver, Duration.ofSeconds(60));
     }
 }

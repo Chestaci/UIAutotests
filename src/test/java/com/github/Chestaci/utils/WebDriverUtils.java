@@ -1,5 +1,6 @@
 package com.github.Chestaci.utils;
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,7 +22,7 @@ public class WebDriverUtils {
         return options;
     }
     private static void setUpDriver(WebDriver driver) {
-        long delaySeconds = 10;
+        long delaySeconds = 30;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(delaySeconds));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(delaySeconds));
