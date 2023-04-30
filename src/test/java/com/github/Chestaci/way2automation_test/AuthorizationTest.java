@@ -1,7 +1,7 @@
-package com.github.Chestaci;
+package com.github.Chestaci.way2automation_test;
 
-import com.github.Chestaci.pages.HomePage;
-import com.github.Chestaci.pages.LoginPage;
+import com.github.Chestaci.pages.way2automation.HomePage;
+import com.github.Chestaci.pages.way2automation.LoginPage;
 import com.github.Chestaci.utils.ConfProperties;
 import com.github.Chestaci.utils.WebDriverUtils;
 import io.qameta.allure.Epic;
@@ -21,7 +21,6 @@ import org.testng.annotations.Test;
 /**
  * Тесты авторизации
  */
-//@Listeners({TestListener.class})
 @Epic("Тесты авторизации")
 public class AuthorizationTest{
     private WebDriver driver;
