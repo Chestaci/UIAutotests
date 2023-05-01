@@ -19,9 +19,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Тесты авторизации
+ * Тесты авторизации сайта www.way2automation.com
  */
-@Epic("Тесты авторизации")
+@Epic("Тесты авторизации сайта www.way2automation.com")
 public class AuthorizationTest{
     private WebDriver driver;
     private LoginPage loginPage;

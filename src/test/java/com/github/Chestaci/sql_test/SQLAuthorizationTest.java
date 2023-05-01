@@ -19,9 +19,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Тесты авторизации
+ * Тесты авторизации сайта www.sql-ex.ru
  */
-@Epic("Тесты авторизации")
+@Epic("Тесты авторизации сайта www.sql-ex.ru")
 public class SQLAuthorizationTest {
     private WebDriver driver;
     private SQLMainPage sqlMainPage;
@@ -44,10 +44,10 @@ public class SQLAuthorizationTest {
     /**
      * Завершающие действия после теста
      */
-//    @AfterTest
-//    void tearDown() {
-//        driver.quit();
-//    }
+    @AfterTest
+    void tearDown() {
+        driver.quit();
+    }
 
     /**
      * Данные для теста успешной авторизации
