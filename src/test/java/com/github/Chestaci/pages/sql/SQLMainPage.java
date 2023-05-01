@@ -131,9 +131,12 @@ public class SQLMainPage extends Page {
 
     /**
      * Метод для авторизации с помощью cookies
+     *
+     * @return домашнюю страницу пользователя
+     * @see SQLHomePage
      */
     @Step("Авторизация пользователя с использованием сохранённых cookies для входа")
-    public void authWithCookies() {
+    public SQLHomePage authWithCookies() {
         driver.manage().deleteCookieNamed("PHPSESSID");
         Path file = Paths.get("Cookies.data");
         try (BufferedReader bufferedReader = Files.newBufferedReader(file)) {
@@ -161,6 +164,7 @@ public class SQLMainPage extends Page {
             ex.printStackTrace();
         }
         driver.navigate().refresh();
+        return new SQLHomePage(driver);
     }
 }
 

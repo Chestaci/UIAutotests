@@ -44,10 +44,10 @@ public class SQLAuthorizationTest {
     /**
      * Завершающие действия после теста
      */
-    @AfterTest
-    void tearDown() {
-        driver.quit();
-    }
+//    @AfterTest
+//    void tearDown() {
+//        driver.quit();
+//    }
 
     /**
      * Данные для теста успешной авторизации
@@ -73,13 +73,10 @@ public class SQLAuthorizationTest {
             + "а для следующего входа - сохранённые cookies.")
     public void cookieAuthenticationTest(String login, String password) {
         sqlMainPage.authWithLoginAndPassword(login, password);
-        WebDriver newDriver = WebDriverUtils.getPreparedDriver();
-        sqlMainPage = new SQLMainPage(newDriver);
-        newDriver.get(ConfProperties.getProperty("sql_page"));
-        sqlMainPage.authWithCookies();
-        SQLHomePage sqlHomePage2 = new SQLHomePage(newDriver);
-        Assertions.assertThat(sqlHomePage2.getNickname()).isEqualTo("chesta");
-        newDriver.quit();
+        driver.manage().deleteAllCookies();
+        driver.navigate().back();
+        SQLHomePage sqlHomePage = sqlMainPage.authWithCookies();
+        Assertions.assertThat(sqlHomePage.getNickname()).isEqualTo("chesta");
     }
 }
 
