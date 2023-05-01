@@ -1,5 +1,6 @@
-package com.github.Chestaci.pages;
+package com.github.Chestaci.pages.way2automation;
 
+import com.github.Chestaci.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,5 +1,6 @@
-package com.github.Chestaci.pages;
+package com.github.Chestaci.pages.way2automation;
 
+import com.github.Chestaci.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

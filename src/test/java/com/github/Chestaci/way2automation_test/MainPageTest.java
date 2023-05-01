@@ -1,7 +1,7 @@
-package com.github.Chestaci;
+package com.github.Chestaci.way2automation_test;
 
-import com.github.Chestaci.pages.MainPage;
-import com.github.Chestaci.pages.PracticeSiteOnePage;
+import com.github.Chestaci.pages.way2automation.MainPage;
+import com.github.Chestaci.pages.way2automation.PracticeSiteOnePage;
 import com.github.Chestaci.utils.ConfProperties;
 import com.github.Chestaci.utils.WebDriverUtils;
 import io.qameta.allure.Epic;

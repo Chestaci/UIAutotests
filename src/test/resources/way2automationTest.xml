@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="way2automationSuite" verbose="1" >
+    <test name="way2automationTests"  >
+        <packages>
+            <package name="com.github.Chestaci.way2automation_test"/>
+        </packages>
+    </test>
+</suite>
