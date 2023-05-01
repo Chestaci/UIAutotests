@@ -18,7 +18,7 @@ public class SQLHomePage extends Page {
     @FindBy(xpath = "//a[text()='chesta']")
     private WebElement nickname;
 
-    /**
+     /**
      * Конструктор класса, занимающийся инициализацией полей класса
      *
      * @param driver

@@ -13,29 +13,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class MainPage extends Page {
     /**
+     * Определение локатора футера страницы
+     */
+    @FindBy(css = "[class*=elementor-25361]")
+    public WebElement footer;
+    /**
      * Определение локатора элемента меню Resources
      */
     @FindBy(css = "#menu-item-27617")
     private WebElement menuResources;
-
     /**
      * Определение локатора заголовка страницы
      */
     @FindBy(xpath = "//*[@id=\"ast-desktop-header\"]/div[1]")
     private WebElement header;
-
     /**
      * Определение локатора элементов меню
      */
     @FindBy(css = "#ast-hf-menu-1")
     private WebElement menuList;
-
-    /**
-     * Определение локатора футера страницы
-     */
-    @FindBy(css = "[class*=elementor-25361]")
-    public WebElement footer;
-
     /**
      * Определение локатора слайда №4
      */
@@ -133,6 +129,7 @@ public class MainPage extends Page {
 
     /**
      * Метод для осуществления прокрутки вниз на заданное количество пикселей
+     *
      * @param pixel Количество пикселей
      */
     @Step("Прокрутка вниз на {pixel} пикселей")
@@ -143,11 +140,12 @@ public class MainPage extends Page {
 
     /**
      * Метод для осуществления прокрутки вниз до нужного элемента на странице
+     *
      * @param element Элемент на странице
      */
     @Step("Прокрутка вниз до элемента")
     public void scrollToElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(menuList));
-         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 }

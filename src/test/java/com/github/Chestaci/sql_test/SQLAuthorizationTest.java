@@ -60,20 +60,26 @@ public class SQLAuthorizationTest {
     }
 
     /**
-     * Тест успешной авторизации, использующий для входа логин и пароль, если cookies не сохранены,
-     * иначе для входа использует сохранённые cookies.
+     * Тест успешной авторизации, использующий для первого входа логин и пароль,
+     * а для следующего входа использует сохранённые cookies.
      *
      * @param login    Логин
      * @param password Пароль
      */
     @Test(dataProvider = "authorizationData")
-    @Severity(value = SeverityLevel.NORMAL)
-    @Feature("Тест авторизации пользователя")
-    @Story("Тест успешной авторизации пользователя, использующий для первого входа логин и пароль,"
+    @Severity(value = SeverityLevel.MINOR)
+    @Feature("Тест авторизации пользователя с сохранёнными cookies")
+    @Story("Тест авторизации пользователя, использующий для первого входа логин и пароль,"
             + "а для следующего входа - сохранённые cookies.")
-    public void successfulAuthorizationTest(String login, String password) {
-        SQLHomePage sqlHomePage = sqlMainPage.authorization(login, password);
-        Assertions.assertThat(sqlHomePage.getNickname()).isEqualTo("chesta");
+    public void cookieAuthenticationTest(String login, String password) {
+        sqlMainPage.authWithLoginAndPassword(login, password);
+        WebDriver newDriver = WebDriverUtils.getPreparedDriver();
+        sqlMainPage = new SQLMainPage(newDriver);
+        newDriver.get(ConfProperties.getProperty("sql_page"));
+        sqlMainPage.authWithCookies();
+        SQLHomePage sqlHomePage2 = new SQLHomePage(newDriver);
+        Assertions.assertThat(sqlHomePage2.getNickname()).isEqualTo("chesta");
+        newDriver.quit();
     }
 }
 

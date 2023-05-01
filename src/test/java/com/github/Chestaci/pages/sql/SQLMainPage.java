@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -98,34 +99,43 @@ public class SQLMainPage extends Page {
      *
      * @param login    Логин
      * @param password Пароль
-     * @param file     Файл с cookies
+     * @return домашнюю страницу пользователя
+     * @see SQLHomePage
      */
-    private void authWithLoginAndPassword(String login, String password, Path file) {
+    @Step("Авторизация пользователя с использованием для входа логина {login} и пароля {password}")
+    public SQLHomePage authWithLoginAndPassword(String login, String password) {
         fillFields(login, password);
-        clickLoginButton();
+        SQLHomePage sqlHomePage = clickLoginButton();
+        Path file = Paths.get("Cookies.data");
+        try {
+            Files.deleteIfExists(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(file)) {
             // loop for getting the cookie information
             for (Cookie cookie : driver.manage().getCookies()) {
                 bufferedWriter.write((cookie.getName() + ";"
-                                    + cookie.getValue() + ";"
-                                    + cookie.getDomain() + ";"
-                                    + cookie.getPath() + ";"
-                                    + cookie.getExpiry() + ";"
-                                    + cookie.isSecure()));
+                        + cookie.getValue() + ";"
+                        + cookie.getDomain() + ";"
+                        + cookie.getPath() + ";"
+                        + cookie.getExpiry() + ";"
+                        + cookie.isSecure()));
                 bufferedWriter.newLine();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return sqlHomePage;
     }
 
     /**
      * Метод для авторизации с помощью cookies
-     *
-     * @param file Файл с cookies
      */
-    private void authWithCookies(Path file) {
+    @Step("Авторизация пользователя с использованием сохранённых cookies для входа")
+    public void authWithCookies() {
         driver.manage().deleteCookieNamed("PHPSESSID");
+        Path file = Paths.get("Cookies.data");
         try (BufferedReader bufferedReader = Files.newBufferedReader(file)) {
             String strline;
             while ((strline = bufferedReader.readLine()) != null) {
@@ -152,26 +162,5 @@ public class SQLMainPage extends Page {
         }
         driver.navigate().refresh();
     }
-
-    /**
-     * Метод для авторизации, использующий для входа логин и пароль, если cookies не сохранены,
-     * иначе для входа использует сохранённые cookies.
-     *
-     * @param login    Логин
-     * @param password Пароль
-     * @return домашнюю страницу
-     * @see SQLHomePage
-     */
-    @Step("Авторизация пользователя с использованием для входа логина {login} и пароля {password}, " +
-            "если cookies не сохранены, иначе для входа используются сохранённые cookies.")
-    public SQLHomePage authorization(String login, String password) {
-        String filePath = "Cookies.data";
-        Path file = Paths.get(filePath);
-        if (Files.notExists(file)) {
-            authWithLoginAndPassword(login, password, file);
-        } else {
-            authWithCookies(file);
-        }
-        return new SQLHomePage(driver);
-    }
 }
+
