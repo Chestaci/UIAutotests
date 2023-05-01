@@ -17,7 +17,7 @@ public class WebDriverUtils {
         options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox");
-   //     options.addArguments("--headless=new");
+        options.addArguments("--headless=new");
         return options;
     }
     private static void setUpDriver(WebDriver driver) {
