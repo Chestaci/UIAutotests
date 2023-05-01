@@ -19,7 +19,7 @@ public class WebDriverUtils {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless=new");
         return options;
-    }
+        }
     private static void setUpDriver(WebDriver driver) {
         long delaySeconds = 30;
         driver.manage().window().maximize();
