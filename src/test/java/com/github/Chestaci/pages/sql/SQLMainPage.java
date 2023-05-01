@@ -3,6 +3,7 @@ package com.github.Chestaci.pages.sql;
 import com.github.Chestaci.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +29,7 @@ public class SQLMainPage extends Page {
      * Определение локатора поля ввода Login
      */
     @FindBy(css = "input[type=text][name=login]")
-    private WebElement loginField;
+    public WebElement loginField;
 
     /**
      * Определение локатора поля ввода Password
@@ -165,6 +166,42 @@ public class SQLMainPage extends Page {
         }
         driver.navigate().refresh();
         return new SQLHomePage(driver);
+    }
+
+    /**
+     * Метод перевода фокуса с элемента
+     *
+     * @param element Элемент
+     */
+    @Step("Перевод фокуса с эелемента")
+    public void blur(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].blur();", element);
+    }
+
+    /**
+     * Метод проверки наличия горизонтального скролла на странице
+     *
+     * @return true, если горизонтальный скролл есть на странице,
+     * иначе - false
+     */
+    @Step("Проверка наличия горизонтального скролла на странице")
+    public boolean checkHorizontalScrollStatus() {
+        return (boolean) ((JavascriptExecutor) driver)
+                .executeScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
+    }
+
+    /**
+     * Метод проверки наличия вертикального скролла на странице
+     *
+     * @return true, если вертикальный скролл есть на странице,
+     * иначе - false
+     */
+    @Step("Проверка наличия вертикального скролла на странице")
+    public boolean checkVerticalScrollStatus() {
+        return (boolean) ((JavascriptExecutor) driver)
+                .executeScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;");
     }
 }
 

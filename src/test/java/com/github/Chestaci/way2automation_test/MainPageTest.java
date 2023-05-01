@@ -19,9 +19,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Тесты главной страницы
+ * Тесты главной страницы сайта www.way2automation.com
  */
-@Epic("Тесты главной страницы")
+@Epic("Тесты главной страницы сайта www.way2automation.com")
 public class MainPageTest{
     private WebDriver driver;
     private MainPage mainPage;
