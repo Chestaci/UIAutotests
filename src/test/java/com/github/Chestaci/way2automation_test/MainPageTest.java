@@ -18,6 +18,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 /**
  * Тесты главной страницы сайта www.way2automation.com
  */
@@ -35,7 +37,7 @@ public class MainPageTest{
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() {
+    void setUpTest() throws MalformedURLException {
         driver = WebDriverUtils.getPreparedDriver();
         mainPage = new MainPage(driver);
         driver.get(ConfProperties.getProperty("main_page"));

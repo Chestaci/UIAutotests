@@ -18,6 +18,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 /**
  * Тесты авторизации сайта www.way2automation.com
  */
@@ -35,7 +37,7 @@ public class AuthorizationTest{
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() {
+    void setUpTest() throws MalformedURLException {
         driver = WebDriverUtils.getPreparedDriver();
         loginPage = new LoginPage(driver);
         driver.get(ConfProperties.getProperty("login_page"));

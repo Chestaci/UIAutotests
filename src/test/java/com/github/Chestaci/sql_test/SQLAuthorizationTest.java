@@ -18,6 +18,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 /**
  * Тесты авторизации сайта www.sql-ex.ru
  */
@@ -35,7 +37,7 @@ public class SQLAuthorizationTest {
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() {
+    void setUpTest() throws MalformedURLException {
         driver = WebDriverUtils.getPreparedDriver();
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));

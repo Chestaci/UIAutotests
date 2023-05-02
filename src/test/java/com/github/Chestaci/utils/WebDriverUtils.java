@@ -1,9 +1,14 @@
 package com.github.Chestaci.utils;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 /**
@@ -26,8 +31,11 @@ public class WebDriverUtils {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(delaySeconds));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(delaySeconds));
     }
-    public static WebDriver getPreparedDriver() {
-        WebDriver webDriver = new ChromeDriver(getChromeOptions());
+    public static WebDriver getPreparedDriver() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+        capabilities.setPlatform(Platform.WINDOWS);
+        WebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:4444/"), capabilities);
         setUpDriver(webDriver);
         return webDriver;
     }
