@@ -16,7 +16,10 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
 
 /**
  * Тесты главной страницы сайта www.way2automation.com
@@ -35,8 +38,9 @@ public class MainPageTest{
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() {
-        driver = WebDriverUtils.getPreparedDriver();
+    @Parameters({"remote"})
+    void setUpTest(String remote) throws MalformedURLException {
+        driver = WebDriverUtils.getPreparedDriver(remote);
         mainPage = new MainPage(driver);
         driver.get(ConfProperties.getProperty("main_page"));
     }

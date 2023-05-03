@@ -15,7 +15,10 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
 
 /**
  * Тесты главной страницы сайта www.sql-ex.ru
@@ -34,8 +37,9 @@ public class MainSQLPageTest {
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() {
-        driver = WebDriverUtils.getPreparedDriver();
+    @Parameters({"remote"})
+    void setUpTest(String remote) throws MalformedURLException {
+        driver = WebDriverUtils.getPreparedDriver(remote);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));
     }
