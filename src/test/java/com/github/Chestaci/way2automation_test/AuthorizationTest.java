@@ -16,6 +16,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
@@ -37,8 +38,9 @@ public class AuthorizationTest{
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() throws MalformedURLException {
-        driver = WebDriverUtils.getPreparedDriver();
+    @Parameters({"remote"})
+    void setUpTest(String remote) throws MalformedURLException {
+        driver = WebDriverUtils.getPreparedDriver(remote);
         loginPage = new LoginPage(driver);
         driver.get(ConfProperties.getProperty("login_page"));
     }

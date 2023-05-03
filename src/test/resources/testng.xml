@@ -3,6 +3,7 @@
     <listeners>
         <listener class-name="com.github.Chestaci.listeners.TestListener"/>
     </listeners>
+    <parameter name="remote" value="true"/>
     <test name="way2automationTests"  >
         <packages>
             <package name="com.github.Chestaci.way2automation_test"/>

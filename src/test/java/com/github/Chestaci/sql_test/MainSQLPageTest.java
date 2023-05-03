@@ -10,18 +10,15 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Тесты главной страницы сайта www.sql-ex.ru
@@ -40,8 +37,9 @@ public class MainSQLPageTest {
      * Инициализация перед началом теста
      */
     @BeforeTest
-    void setUpTest() throws MalformedURLException {
-        driver = WebDriverUtils.getPreparedDriver();
+    @Parameters({"remote"})
+    void setUpTest(String remote) throws MalformedURLException {
+        driver = WebDriverUtils.getPreparedDriver(remote);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));
     }

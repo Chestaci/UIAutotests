@@ -1,0 +1,20 @@
+[node]
+override-max-sessions = true
+max-sessions = 5
+detect-drivers = false
+session-timeout = 1800
+
+[[node.driver-configuration]]
+max-sessions = 5
+display-name = "Chrome"
+stereotype = '{"browserName": "chrome", "platformName": "WINDOWS"}'
+
+[[node.driver-configuration]]
+max-sessions = 5
+display-name = "Firefox"
+stereotype = '{"browserName": "firefox", "platformName": "WINDOWS"}'
+
+[[node.driver-configuration]]
+max-sessions = 5
+display-name = "Internet Explorer"
+stereotype = '{"browserName": "internet explorer", "platformName": "WINDOWS"}'

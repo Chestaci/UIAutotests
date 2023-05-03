@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,11 +32,17 @@ public class WebDriverUtils {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(delaySeconds));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(delaySeconds));
     }
-    public static WebDriver getPreparedDriver() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("chrome");
-        capabilities.setPlatform(Platform.WINDOWS);
-        WebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:4444/"), capabilities);
+    @Parameters({"remote"})
+    public static WebDriver getPreparedDriver(String remote) throws MalformedURLException {
+        WebDriver webDriver = null;
+        if(remote.equals("true")) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName("chrome");
+            capabilities.setPlatform(Platform.WINDOWS);
+            webDriver = new RemoteWebDriver(new URL(ConfProperties.getProperty("localhost")), capabilities);
+        }else {
+            webDriver = new ChromeDriver(getChromeOptions());
+        }
         setUpDriver(webDriver);
         return webDriver;
     }
