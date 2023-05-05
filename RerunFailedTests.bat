@@ -1,1 +1,1 @@
-java -cp "test-folder\*;target\test-classes\;"  org.testng.TestNG src\test\resources\testng.xml
+java -cp "test-folder\*;target\test-classes\;"  org.testng.TestNG -d test-output test-output\testng-failed.xml
