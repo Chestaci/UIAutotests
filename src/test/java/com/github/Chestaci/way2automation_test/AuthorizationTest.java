@@ -1,5 +1,6 @@
 package com.github.Chestaci.way2automation_test;
 
+import com.github.Chestaci.listeners.Retry;
 import com.github.Chestaci.pages.way2automation.HomePage;
 import com.github.Chestaci.pages.way2automation.LoginPage;
 import com.github.Chestaci.utils.ConfProperties;
@@ -12,6 +13,7 @@ import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -157,7 +159,7 @@ public class AuthorizationTest{
     /**
      * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
      */
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void failTestAuthorizationTest(){
         loginPage.clearFields();
         Assertions.fail("Fail authorization test");

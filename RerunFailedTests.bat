@@ -1,0 +1,1 @@
+java -cp "C:/Users/chest/.m2/repository/org/testng/testng/7.7.1/testng-7.7.1.jar;C:/Users/chest/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar;C:/Users/chest/.m2/repository/org/slf4j/slf4j-api/1.7.36/*;target/test-classes" org.testng.TestNG test-output/Suites/testng-failed.xml
