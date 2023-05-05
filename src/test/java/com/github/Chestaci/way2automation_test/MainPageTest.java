@@ -133,7 +133,7 @@ public class MainPageTest{
      */
     @Test
     public void failTestMainPage(){
-        mainPage.clickMenuResources();
+        mainPage.scrollToElement(mainPage.footer);
         Assertions.fail("Fail main page test");
     }
 }

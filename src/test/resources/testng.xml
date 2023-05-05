@@ -2,8 +2,9 @@
 <suite name="Suites" thread-count="2" parallel="tests">
     <listeners>
         <listener class-name="com.github.Chestaci.listeners.TestListener"/>
+        <listener class-name="com.github.Chestaci.listeners.AnnotationTransformer"/>
     </listeners>
-    <parameter name="remote" value="true"/>
+    <parameter name="remote" value="false"/>
     <test name="way2automationTests"  >
         <packages>
             <package name="com.github.Chestaci.way2automation_test"/>
