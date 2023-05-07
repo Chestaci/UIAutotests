@@ -5,6 +5,7 @@
         <listener class-name="com.github.Chestaci.listeners.AnnotationTransformer"/>
     </listeners>
     <parameter name="remote" value="false"/>
+    <parameter name="browserName" value="chrome"/>
     <test name="way2automationTests"  >
         <packages>
             <package name="com.github.Chestaci.way2automation_test"/>
