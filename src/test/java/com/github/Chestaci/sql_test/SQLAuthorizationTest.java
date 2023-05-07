@@ -3,7 +3,7 @@ package com.github.Chestaci.sql_test;
 import com.github.Chestaci.pages.sql.SQLHomePage;
 import com.github.Chestaci.pages.sql.SQLMainPage;
 import com.github.Chestaci.utils.ConfProperties;
-import com.github.Chestaci.utils.WebDriverUtils;
+import com.github.Chestaci.driver_manager.DriverManager;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -38,9 +38,9 @@ public class SQLAuthorizationTest {
      * Инициализация перед началом теста
      */
     @BeforeTest
-    @Parameters({"remote"})
-    void setUpTest(String remote) throws MalformedURLException {
-        driver = WebDriverUtils.getPreparedDriver(remote);
+    @Parameters({"remote", "browserName"})
+    void setUpTest(String remote, String browserName) throws MalformedURLException {
+        driver = DriverManager.getPreparedDriver(remote, browserName);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));
     }

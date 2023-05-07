@@ -2,7 +2,7 @@ package com.github.Chestaci.sql_test;
 
 import com.github.Chestaci.pages.sql.SQLMainPage;
 import com.github.Chestaci.utils.ConfProperties;
-import com.github.Chestaci.utils.WebDriverUtils;
+import com.github.Chestaci.driver_manager.DriverManager;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -15,6 +15,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -37,9 +38,9 @@ public class MainSQLPageTest {
      * Инициализация перед началом теста
      */
     @BeforeTest
-    @Parameters({"remote"})
-    void setUpTest(String remote) throws MalformedURLException {
-        driver = WebDriverUtils.getPreparedDriver(remote);
+    @Parameters({"remote", "browserName"})
+    void setUpTest(@Optional("true") String remote, @Optional("ie") String browserName) throws MalformedURLException {
+        driver = DriverManager.getPreparedDriver(remote, browserName);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));
     }
