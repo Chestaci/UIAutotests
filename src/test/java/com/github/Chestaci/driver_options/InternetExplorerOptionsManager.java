@@ -1,5 +1,6 @@
 package com.github.Chestaci.driver_options;
 
+import com.github.Chestaci.utils.ConfProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
@@ -11,7 +12,7 @@ public class InternetExplorerOptionsManager {
         WebDriverManager.iedriver().arch32().setup();
         InternetExplorerOptions options = new InternetExplorerOptions();
         options.ignoreZoomSettings();
-        options.withInitialBrowserUrl("https://www.sql-ex.ru/");
+        options.withInitialBrowserUrl(ConfProperties.getProperty("sql_page"));
         return options;
     }
 }
