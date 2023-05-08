@@ -39,7 +39,7 @@ public class MainSQLPageTest {
      */
     @BeforeTest
     @Parameters({"remote", "browserName"})
-    void setUpTest(@Optional("true") String remote, @Optional("ie") String browserName) throws MalformedURLException {
+    void setUpTest(@Optional ("false") String remote, @Optional ("chrome")String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));

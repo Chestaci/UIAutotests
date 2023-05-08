@@ -16,6 +16,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -39,7 +40,7 @@ public class SQLAuthorizationTest {
      */
     @BeforeTest
     @Parameters({"remote", "browserName"})
-    void setUpTest(String remote, String browserName) throws MalformedURLException {
+    void setUpTest(@Optional("false") String remote, @Optional ("chrome")String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
         sqlMainPage = new SQLMainPage(driver);
         driver.get(ConfProperties.getProperty("sql_page"));
