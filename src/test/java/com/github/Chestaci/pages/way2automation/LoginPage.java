@@ -32,7 +32,7 @@ public class LoginPage extends Page {
     private WebElement usernameDescriptionField;
 
     /**
-     * Определение локатора поля кнопки авторизации
+     * Определение локатора кнопки авторизации
      */
     @FindBy(css = "[ng-click*=login]")
     private WebElement loginButton;

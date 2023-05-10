@@ -24,7 +24,7 @@ public class TabPage extends Page {
      * Определение локатора рамки
      */
     @FindBy(css = ".demo-frame")
-    private WebElement frame;
+    private WebElement iframe;
 
     /**
      * Конструктор класса, занимающийся инициализацией полей класса
@@ -42,7 +42,7 @@ public class TabPage extends Page {
      */
     @Step("Нажатие на ссылку в первой вкладке, переход на вторую вкладку, нажатие на ссылку во второй вкладке.")
     public int tabClick() {
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe));
         link.click();
         //Получение списка вкладок
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
