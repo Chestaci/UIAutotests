@@ -29,7 +29,7 @@ public class DragAndDropPage extends Page {
      * Определение локатора рамки
      */
     @FindBy(css = ".demo-frame")
-    private WebElement frame;
+    private WebElement iframe;
 
     /**
      * Определение локатора сообщения принимающего элемента
@@ -54,7 +54,7 @@ public class DragAndDropPage extends Page {
     @Step("Перетаскивание элемента и получение сообщения принимающего элемента")
     public String dragAndDrop() {
         Actions action = new Actions(driver);
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe));
         action.dragAndDrop(draggableElement, droppableElement).perform();
         return text.getText();
     }

@@ -1,7 +1,7 @@
 package com.github.Chestaci.way2automation_test;
 
 import com.github.Chestaci.driver_manager.DriverManager;
-import com.github.Chestaci.pages.way2automation.TabPage;
+import com.github.Chestaci.pages.way2automation.AlertPage;
 import com.github.Chestaci.utils.ConfProperties;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 
 /**
- * Тесты работы с вкладками сайта www.way2automation.com
+ * Тесты работы с всплывающими оповещениями сайта www.way2automation.com
  */
-@Epic("Тесты работы с вкладками сайта www.way2automation.com")
-public class TabTest {
+@Epic("Тесты работы с всплывающими оповещениями сайта www.way2automation.com")
+public class AlertTest {
     private WebDriver driver;
-    private TabPage tabPage;
+    private AlertPage alertPage;
 
     @BeforeMethod
     public void setUpMethod(final ITestContext context) {
@@ -40,8 +40,8 @@ public class TabTest {
     @Parameters({"remote", "browserName"})
     void setUpTest(@Optional("false") String remote, @Optional("chrome") String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
-        tabPage = new TabPage(driver);
-        driver.get(ConfProperties.getProperty("tab_page"));
+        alertPage = new AlertPage(driver);
+        driver.get(ConfProperties.getProperty("alert_page"));
     }
 
     /**
@@ -53,13 +53,17 @@ public class TabTest {
     }
 
     /**
-     * Тест работы с вкладками
+     * Тест работы с всплывающими оповещениями
      */
     @Test
     @Severity(value = SeverityLevel.MINOR)
-    @Feature("Тест работы с вкладками")
-    @Story("Тест перехода на разные вкладки")
-    public void tabTest() {
-        Assertions.assertThat(tabPage.tabClick()).isEqualTo(3);
+    @Feature("Тест работы с всплывающими оповещениями")
+    @Story("Тест перехода на всплывающее оповещение, ввода текста и получение ответного сообщения")
+    public void alertTest() {
+        alertPage.clickInputAlertButton();
+        alertPage.clickAlertDemonstrationButton();
+        driver.switchTo().alert().sendKeys(ConfProperties.getProperty("alert_page_name"));
+        driver.switchTo().alert().accept();
+        Assertions.assertThat(alertPage.getText()).contains(ConfProperties.getProperty("alert_page_name"));
     }
 }
