@@ -1,7 +1,7 @@
 package com.github.Chestaci.way2automation_test;
 
 import com.github.Chestaci.driver_manager.DriverManager;
-import com.github.Chestaci.pages.way2automation.DragAndDropPage;
+import com.github.Chestaci.pages.way2automation.TabPage;
 import com.github.Chestaci.utils.ConfProperties;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 
 /**
- * Тесты взаимодействия сайта www.way2automation.com
+ * Тесты работы с вкладками сайта www.way2automation.com
  */
-@Epic("Тесты взаимодействия сайта www.way2automation.com")
-public class InteractionTest {
+@Epic("Тесты работы с вкладками сайта www.way2automation.com")
+public class TabTest {
     private WebDriver driver;
-    private DragAndDropPage dragAndDropPage;
+    private TabPage tabPage;
 
     @BeforeMethod
     public void setUpMethod(final ITestContext context) {
@@ -40,8 +40,8 @@ public class InteractionTest {
     @Parameters({"remote", "browserName"})
     void setUpTest(@Optional("false") String remote, @Optional("chrome") String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
-        dragAndDropPage = new DragAndDropPage(driver);
-        driver.get(ConfProperties.getProperty("drag_and_drop_page"));
+        tabPage = new TabPage(driver);
+        driver.get(ConfProperties.getProperty("tab_page"));
     }
 
     /**
@@ -52,11 +52,14 @@ public class InteractionTest {
         driver.quit();
     }
 
+    /**
+     * Тест работы с вкладками
+     */
     @Test
     @Severity(value = SeverityLevel.MINOR)
-    @Feature("Тест перетаскивания элемента")
-    @Story("Тест перетаскивания элемента и получения сообщения")
-    public void dragAndDropTest() {
-        Assertions.assertThat(dragAndDropPage.dragAndDrop()).isEqualTo("Dropped!");
+    @Feature("Тест работы с вкладками")
+    @Story("Тест перехода на разные вкладки")
+    public void test() {
+        Assertions.assertThat(tabPage.tabClick()).isEqualTo(3);
     }
 }
