@@ -1,4 +1,4 @@
-package com.github.Chestaci.way2automation_test;
+package com.github.Chestaci.tests.way2automation_test;
 
 import com.github.Chestaci.pages.way2automation.HomePage;
 import com.github.Chestaci.pages.way2automation.LoginPage;
@@ -159,6 +159,9 @@ public class AuthorizationTest{
      * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
      */
     @Test
+    @Severity(value = SeverityLevel.TRIVIAL)
+    @Feature("Падающий тест")
+    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
     public void failTestAuthorizationTest(){
         loginPage.clearFields();
         Assertions.fail("Fail authorization test");

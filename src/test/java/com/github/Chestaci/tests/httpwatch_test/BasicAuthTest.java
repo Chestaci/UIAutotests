@@ -1,7 +1,7 @@
-package com.github.Chestaci.way2automation_test;
+package com.github.Chestaci.tests.httpwatch_test;
 
 import com.github.Chestaci.driver_manager.DriverManager;
-import com.github.Chestaci.pages.way2automation.TabPage;
+import com.github.Chestaci.pages.httpwatch.BasicAuthPage;
 import com.github.Chestaci.utils.ConfProperties;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -20,13 +20,14 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
+
 /**
- * Тесты работы с вкладками сайта www.way2automation.com
+ * Тесты работы с Basic Authorization сайта www.httpwatch.com
  */
-@Epic("Тесты работы с вкладками сайта www.way2automation.com")
-public class TabTest {
+@Epic("Тесты работы с авторизацией во всплывающем окне сайта www.httpwatch.com")
+public class BasicAuthTest {
     private WebDriver driver;
-    private TabPage tabPage;
+    private BasicAuthPage basicAuthPage;
 
     @BeforeMethod
     public void setUpMethod(final ITestContext context) {
@@ -40,8 +41,8 @@ public class TabTest {
     @Parameters({"remote", "browserName"})
     void setUpTest(@Optional("false") String remote, @Optional("chrome") String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
-        tabPage = new TabPage(driver);
-        driver.get(ConfProperties.getProperty("tab_page"));
+        basicAuthPage = new BasicAuthPage(driver);
+        driver.get(ConfProperties.getProperty("basic_auth_page"));
     }
 
     /**
@@ -53,13 +54,14 @@ public class TabTest {
     }
 
     /**
-     * Тест работы с вкладками
+     * Тест работы с Basic Authorization
      */
     @Test
-    @Severity(value = SeverityLevel.MINOR)
-    @Feature("Тест работы с вкладками")
-    @Story("Тест перехода на разные вкладки")
-    public void tabTest() {
-        Assertions.assertThat(tabPage.tabClick()).isEqualTo(3);
+    @Severity(value = SeverityLevel.NORMAL)
+    @Feature("Тест работы с Basic Authorization")
+    @Story("Тест авторизации Basic Authorization")
+    public void basicAuthTest() {
+        basicAuthPage.clickDisplayImageButton();
+        Assertions.assertThat(basicAuthPage.getAttribute()).contains(ConfProperties.getProperty("basic_auth_login"));
     }
 }
