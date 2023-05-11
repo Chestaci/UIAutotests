@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suites" thread-count="2" parallel="tests">
+<suite name="Suites" thread-count="3" parallel="tests">
     <listeners>
         <listener class-name="com.github.Chestaci.listeners.TestListener"/>
         <listener class-name="com.github.Chestaci.listeners.AnnotationTransformer"/>
@@ -8,12 +8,17 @@
     <parameter name="browserName" value="chrome"/>
     <test name="way2automationTests"  >
         <packages>
-            <package name="com.github.Chestaci.way2automation_test"/>
+            <package name="com.github.Chestaci.tests.way2automation_test"/>
         </packages>
     </test>
     <test name="sqlTests">
         <packages>
-            <package name="com.github.Chestaci.sql_test"/>
+            <package name="com.github.Chestaci.tests.sql_test"/>
+        </packages>
+    </test>
+    <test name="httpwatchTests">
+        <packages>
+            <package name="com.github.Chestaci.tests.httpwatch_test"/>
         </packages>
     </test>
 </suite>

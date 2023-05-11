@@ -1,4 +1,4 @@
-package com.github.Chestaci.way2automation_test;
+package com.github.Chestaci.tests.way2automation_test;
 
 import com.github.Chestaci.driver_manager.DriverManager;
 import com.github.Chestaci.pages.way2automation.AlertPage;

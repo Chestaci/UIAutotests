@@ -1,4 +1,4 @@
-package com.github.Chestaci.sql_test;
+package com.github.Chestaci.tests.sql_test;
 
 import com.github.Chestaci.pages.sql.SQLMainPage;
 import com.github.Chestaci.utils.ConfProperties;
