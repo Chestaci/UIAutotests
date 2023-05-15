@@ -40,7 +40,7 @@ public class AuthorizationTest{
      */
     @BeforeTest
     @Parameters({"remote", "browserName"})
-    void setUpTest(@Optional("false") String remote, @Optional ("chrome")String browserName) throws MalformedURLException {
+   public void setUpTest(@Optional("false") String remote, @Optional ("chrome")String browserName) throws MalformedURLException {
         driver = DriverManager.getPreparedDriver(remote, browserName);
         loginPage = new LoginPage(driver);
         driver.get(ConfProperties.getProperty("login_page"));

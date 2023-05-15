@@ -21,4 +21,9 @@
             <package name="com.github.Chestaci.tests.httpwatch_test"/>
         </packages>
     </test>
+<!--    <test name="BDDTests">-->
+<!--        <packages>-->
+<!--            <package name="com.github.Chestaci.bdd"/>-->
+<!--        </packages>-->
+<!--    </test>-->
 </suite>

@@ -25,3 +25,7 @@ replay_pid*
 /out/
 /.idea/
 /target/
+/allure-results/
+/UIAutotests.iml
+/.allure/allure-2.21.0/
+/Cookies.data
