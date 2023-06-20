@@ -4,8 +4,8 @@
         <listener class-name="com.github.Chestaci.listeners.TestListener"/>
         <listener class-name="com.github.Chestaci.listeners.AnnotationTransformer"/>
     </listeners>
-    <parameter name="remote" value="false"/>
-    <parameter name="browserName" value="chrome"/>
+    <parameter name="remote" value="true"/>
+    <parameter name="browserName" value="opera"/>
     <test name="way2automationTests"  >
         <packages>
             <package name="com.github.Chestaci.tests.way2automation_test"/>
@@ -21,9 +21,4 @@
             <package name="com.github.Chestaci.tests.httpwatch_test"/>
         </packages>
     </test>
-<!--    <test name="BDDTests">-->
-<!--        <packages>-->
-<!--            <package name="com.github.Chestaci.bdd"/>-->
-<!--        </packages>-->
-<!--    </test>-->
 </suite>

@@ -3,6 +3,8 @@ package com.github.Chestaci.driver_options;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.HashMap;
+
 /**
  * Опции браузера Firefox
  */
@@ -16,6 +18,9 @@ public class FirefoxOptionsManager {
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
+        options.setCapability("selenoid:options", new HashMap<String, Object>() {{
+            put("enableVNC", true);
+        }});
         return options;
     }
 }

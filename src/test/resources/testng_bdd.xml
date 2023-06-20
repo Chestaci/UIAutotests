@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDDSuites">
-    <test name="BDDTests">
-        <packages>
-            <package name="com.github.Chestaci.bdd"/>
-        </packages>
-    </test>
-</suite>

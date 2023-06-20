@@ -1,9 +1,9 @@
-package com.github.Chestaci.tests.way2automation_test;
+package java.com.github.Chestaci.tests.way2automation_test;
 
+import com.github.Chestaci.driver_manager.DriverManager;
 import com.github.Chestaci.pages.way2automation.MainPage;
 import com.github.Chestaci.pages.way2automation.PracticeSiteOnePage;
 import com.github.Chestaci.utils.ConfProperties;
-import com.github.Chestaci.driver_manager.DriverManager;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;

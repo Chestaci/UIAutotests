@@ -1,4 +1,4 @@
-package com.github.Chestaci.driver_manager;
+package java.com.github.Chestaci.driver_manager;
 
 import com.github.Chestaci.factory_manager.FactoryManager;
 import org.openqa.selenium.Dimension;

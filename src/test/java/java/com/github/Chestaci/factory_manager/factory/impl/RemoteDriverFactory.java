@@ -1,4 +1,4 @@
-package com.github.Chestaci.factory_manager.factory.impl;
+package java.com.github.Chestaci.factory_manager.factory.impl;
 
 import com.github.Chestaci.driver_options.ChromeOptionsManager;
 import com.github.Chestaci.driver_options.EdgeOptionsManager;
@@ -19,9 +19,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-
-import static javax.swing.UIManager.put;
 
 /**
  * Фабрика, поставляющая драйвера для удалённого запуска
