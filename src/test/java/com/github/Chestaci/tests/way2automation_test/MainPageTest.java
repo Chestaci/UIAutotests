@@ -88,7 +88,7 @@ public class MainPageTest{
     /**
      * Тест отображения основного меню в шапке при скроллинге на 1000 пикселей вниз
      */
-    @Test(priority = -4)
+    @Test
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature("Тест отображения основного меню в шапке при скроллинге")
     @Story("Тест отображения основного меню в шапке при скроллинге на заданное количество пикселей вниз")
@@ -103,7 +103,7 @@ public class MainPageTest{
     /**
      * Тест отображения основного меню в шапке при скроллинге до футера
      */
-    @Test(priority = -3)
+    @Test
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature("Тест отображения основного меню в шапке при скроллинге")
     @Story("Тест отображения основного меню в шапке при скроллинге до заданного элемента")
@@ -132,12 +132,12 @@ public class MainPageTest{
     /**
      * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
      */
-//    @Test(priority = -5)
-//    @Severity(value = SeverityLevel.TRIVIAL)
-//    @Feature("Падающий тест")
-//    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
-//    public void failTestMainPage(){
-//        mainPage.scrollToElement(mainPage.footer);
-//        Assertions.fail("Fail main page test");
-//    }
+    @Test
+    @Severity(value = SeverityLevel.TRIVIAL)
+    @Feature("Падающий тест")
+    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
+    public void failTestMainPage(){
+        mainPage.scrollToElement(mainPage.footer);
+        Assertions.fail("Fail main page test");
+    }
 }

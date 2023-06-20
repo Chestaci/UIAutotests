@@ -1,1 +1,1 @@
-# UIAutotestsWithSelenoid
+# UIAutotests
